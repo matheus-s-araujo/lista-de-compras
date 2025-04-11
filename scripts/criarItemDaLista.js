@@ -1,19 +1,19 @@
+import gerarDiaDaSemana from "./gerarDiaDaSemana.js";
 const inputItem = document.getElementById("input-item")
 let contador = 0;
 
-export function criar itemDaLista() {
-  
+export function criarItemDaLista() {
   if (inputItem.value === "") {
-    alert("Por favor, insira um item!")
-    return
+    alert("Você não informou nenhum item.Por favor, insira um item!")
+    return;
   }
 
-  const itemDaLista = document.createElement("li")
-  const containerItemDaLista = document.createElement("div")
-  containerItemDaLista.classList.add("lista-item-container")
-  const inputCheckbox = document.createElement("input")
-  inputCheckbox.type = "checkbox"
-  inputCheckbox.id = "checkbox-" + contador++
+  const itemDaLista = document.createElement("li");
+  const containerItemDaLista = document.createElement("div");
+  containerItemDaLista.classList.add("lista-item-container");
+  const inputCheckbox = document.createElement("input");
+  inputCheckbox.type = "checkbox";
+  inputCheckbox.id = "checkbox-" + contador++;
   const nomeItem = document.createElement("p")
   nomeItem.innerText = inputItem.value
 
@@ -21,7 +21,7 @@ export function criar itemDaLista() {
     if (inputCheckbox.checked) {
       nomeItem.style.textDecoration = "line-through"
     } else {
-      nomeItem.styke.textDecoration = "none"
+      nomeItem.style.textDecoration = "none"
     }
   })
 
@@ -29,16 +29,8 @@ export function criar itemDaLista() {
   containerItemDaLista.appendChild(nomeItem)
 
   itemDaLista.appendChild(containerItemDaLista)
-
-  const diaDaSemana = new Date().toLocaleDateString("pt-BR", {
-    weekday: "long",
-  })
-  const data = new Date().toLocaleDateString("pt-BR")
-  const hora = new Date().toLocaleTimeString("pt-BR", {
-    hour: "numeric",
-    minute: "numeric",
-  })
-  const dataCompleta = `${diaDaSemana} (${data}) às ${hora}`
+  const dataCompleta = gerarDiaDaSemana();
+  
   const itemData = document.createElement("p")
   itemData.innerText = dataCompleta
   itemData.classList.add("texto-data")
